@@ -16,7 +16,7 @@ After ruuning the analysis, there are two data sets saved in csv files:
 
 Variable name    | Description
 -----------------|------------
-subject          | ID the subject who performed the activity, ranging from 1 to 30
+subject          | Subject ID who performed the activity, ranging from 1 to 30
 activityNum      | Activity number, ranging from 1 to 6
 activityName     | Activity names including walking, walking_upstairs, walking_downstairs, sitting, standing and laying
 featureName      | Column variables, only mean and standard deviation are selected for our case
