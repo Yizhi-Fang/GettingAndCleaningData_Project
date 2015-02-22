@@ -98,8 +98,8 @@ for(i in 1:length(split_subject)){
 ```
 
 After runing the analysis, there are two data sets saved in csv files:
-* The cleaned data with measurements on the mean and standard deviation for each measurement saved in ```cleaned_data.csv```
-* The average of each variable for each activity and each subject calculated from previous data saved in ```mean_variables_per_activity_subject.csv```
+* The cleaned data with measurements on the mean and standard deviation for each measurement saved in ```cleaned_data.txt```
+* The average of each variable for each activity and each subject calculated from previous data saved in ```mean_variables_per_activity_subject.txt```
 
 ## Data structure
 
