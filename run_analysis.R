@@ -63,10 +63,5 @@ for(i in 1:length(split_subject)){
 }
 
 ## write all cleaned up data into files
-<<<<<<< HEAD
-write.table(data, 'cleaned_data.txt', row.name = F, sep = ',')
-write.table(mean_data, 'mean_variables_per_activity_subject.txt', row.name = F, sep = ',')
-=======
 write.table(data, 'cleaned_data.txt', row.names = F, sep = ',')
 write.table(mean_data, 'mean_variables_per_activity_subject.txt', row.names = F, sep = ',')
->>>>>>> 5c9f9e044e4b4a878d5f9cd7eda2da26926e0f35
