@@ -63,5 +63,5 @@ for(i in 1:length(split_subject)){
 }
 
 ## write all cleaned up data into files
-write.csv(data, 'cleaned_data.csv')
-write.csv(mean_data, 'mean_variables_per_activity_subject.csv')
+write.table(data, 'cleaned_data.txt', row.name = F, sep = ',')
+write.table(mean_data, 'mean_variables_per_activity_subject.txt', row.name = F, sep = ',')
