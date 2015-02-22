@@ -4,5 +4,5 @@
 * Create a folder that contains both data file folder and R script ```run_analysis.R```
 * Set the working directory to this folder
 * Run the R script ```run_analysis.R```
-* A new data set with the average of each variable for each activity and each subject will be saved in the same folder with name ```mean_variables_per_activity_subject.csv```
+* Two data sets: one is the cleaned data with measurements on the mean and standard deviation for each measurement saved in ```cleaned_data.txt```, the other is the average of each variable for each activity and each subject will be saved in the same folder with name ```mean_variables_per_activity_subject.txt```
 * Refer to ```CodeBook.md``` for further information of variables, data and transformations made to clean up data
