@@ -1,17 +1,3 @@
-## Analysis process
-
-The analysis file is saved as ```run_analysis.R```
-
-* Merges the training and the test sets to create one data set.
-* Extracts only the measurements on the mean and standard deviation for each measurement. 
-* Uses descriptive activity names to name the activities in the data set
-* Appropriately labels the data set with descriptive variable names. 
-* From the data set in previous step, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-
-After ruuning the analysis, there are two data sets saved in csv files:
-* The cleaned data with measurements on the mean and standard deviation for each measurement saved in ```cleaned_data.csv```
-* The average of each variable for each activity and each subject calculated from previous data saved in ```mean_variables_per_activity_subject.csv```
-
 ## Variable description
 
 Variable name    | Description
@@ -20,6 +6,8 @@ subject          | Subject ID who performed the activity, ranging from 1 to 30
 activityNum      | Activity number, ranging from 1 to 6
 activityName     | Activity names including walking, walking_upstairs, walking_downstairs, sitting, standing and laying
 featureName      | Column variables, only mean and standard deviation are selected for our case
+data             | Cleaned data with measurements on the mean and standard deviation for each measurement
+mean_data        | Average of each variable for each activity and each subject calculated from previous data
 
 ## The list of feature names
 
@@ -62,6 +50,56 @@ feature$featureName
 [63] "fBodyBodyGyroMag-mean()"     "fBodyBodyGyroMag-std()"     
 [65] "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()" 
 ```
+
+## Analysis process
+
+The analysis file is saved as ```run_analysis.R```. The followings are some main codes in the file:
+
+* Merges the training and the test sets to create one data set.
+```{r}
+subject <- rbind(subject_train, subject_test)
+setnames(subject, 'V1', 'subject')
+
+activity <- rbind(activity_train, activity_test)
+setnames(activity, 'V1', 'activityNum')
+
+result <- rbind(result_train, result_test)
+
+data <- cbind(subject, activity, result)
+```
+* Extracts only the measurements on the mean and standard deviation for each measurement.
+```{r}
+feature <- feature[grep('mean\\(\\)|std\\(\\)', featureName)]
+select <- c('subject', 'activityNum', paste0('V', feature$featureNum))
+data <- subset(data, select = select)
+```
+* Uses descriptive activity names to name the activities in the data set.
+```{r}
+data <- merge(data, activity_labels, by = 'activityNum', all = T)
+```
+* Appropriately labels the data set with descriptive variable names.
+```{r}
+setnames(data, paste0('V', feature$featureNum), feature$featureName)
+```
+* From the data set in previous step, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+```{r}
+split_subject <- split(data, data$subject)
+
+for(i in 1:length(split_subject)){
+    temp <- split_subject[[i]]
+    temp <- temp[, 3:ncol(temp), with = F]
+    temp <- aggregate(. ~ activityName, temp, mean)
+    # calculate mean of each feature grouping by activityName
+    temp <- data.table(temp)
+    temp <- cbind(i, temp)
+    setnames(temp, names(temp)[1], 'subject')
+    mean_data <- rbind(mean_data, temp)
+}
+```
+
+After ruuning the analysis, there are two data sets saved in csv files:
+* The cleaned data with measurements on the mean and standard deviation for each measurement saved in ```cleaned_data.csv```
+* The average of each variable for each activity and each subject calculated from previous data saved in ```mean_variables_per_activity_subject.csv```
 
 ## Data structure
 
