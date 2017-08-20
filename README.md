@@ -1,5 +1,5 @@
-# The procedures to analyze the data:
-* Download the data file from [https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
+## The procedures to analyze the data:
+* Download the data file from [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
 * Unzip the data file as "UCI HAR Dataset"
 * Create a folder that contains both data file folder and R script ```run_analysis.R```
 * Set the working directory to this folder
